@@ -31,6 +31,8 @@ def binary_to_denary(num):
 
 def dec_to_hex(num):
 	value = []
+	if num == 0:
+		value.append("0")
 	while num >= 1:
 		if num % 16 >= 10:
 			if num % 16 == 10:
@@ -80,16 +82,51 @@ def hex_to_dec(num):
 	os.system("cls")
 	return total_sum
 
+def hex_to_bin(num):
+	vals = []
+	for i in num:
+		vals.append(i)
+	val2 = []
+	for i in vals:
+		val2.append(hex_to_dec(i))
+	bin_vals = []
+	for i in val2:
+		bin_vals.append(full_num(i))
+	final_string = ""
+	for i in bin_vals:
+		final_string = final_string + str(i)
+	os.system("cls")
+	return final_string
+
+def bin_to_hex(num):
+	vals = []
+	num_str = str(num)
+	for i in range(0, len(num_str), 4):
+		vals.append(num_str[i:i+4])
+	val2 = []
+	for i in vals:
+		val2.append(int(binary_to_denary(int(i))))
+	hex_vals = []
+	for i in val2:
+		hex_vals.append(dec_to_hex(i))
+	final_string = ""
+	for i in hex_vals:
+		final_string = final_string + str(i)
+	os.system("cls")
+	return final_string
 
 def main():
+	os.system("cls")
 	exit = False
 	while not exit:
-		print("Binary <==> Decimal Conversion Tool")
+		print("Binary <==> Decimal <==> Hexadecimal Conversion Tool")
 		print("1. Convert Decimal to Binary")
 		print("2. Convert Binary to Decimal")
 		print("3. Convert Decimal to Hexadecimal")
 		print("4. Convert Hexadecimal to Decimal")
-		print("5. Exit")
+		print("5. Convert Binary to Hexadecimal")
+		print("6. Convert Hexadecimal to Binary")
+		print("7. Exit")
 		choice = input(">> ")
 		if choice == "1":
 			val = int(input("Number: "))
@@ -104,6 +141,12 @@ def main():
 			val = input("Number: ")
 			print(hex_to_dec(val))
 		elif choice == "5":
+			val = int(input("Number: "))
+			print(bin_to_hex(val))
+		elif choice == "6":
+			val = input("Number: ")
+			print(hex_to_bin(val))
+		elif choice == "7":
 			exit = True
 		else:
 			os.system("cls")
