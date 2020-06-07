@@ -29,13 +29,67 @@ def binary_to_denary(num):
 	os.system("cls")
 	return total_sum
 
+def dec_to_hex(num):
+	value = []
+	while num >= 1:
+		if num % 16 >= 10:
+			if num % 16 == 10:
+				value.append("A")
+			elif num % 16 == 11:
+				value.append("B")
+			elif num % 16 == 12:
+				value.append("C")
+			elif num % 16 == 13:
+				value.append("D")
+			elif num % 16 == 14:
+				value.append("E")
+			elif num % 16 == 15:
+				value.append("F")		
+		else:
+			value.append(num % 16)
+		num = int(num / 16)
+	new_val = []
+	for i in reversed(value):
+		new_val.append(i)
+	string = ""
+	for i in new_val:
+		string = string + str(i)
+	os.system("cls")
+	return string
+
+def hex_to_dec(num):
+	total_sum = 0
+	current_place = len(num) - 1
+	for i in num:
+		if i == "A":
+			current_val = 10
+		elif i == "B":
+			current_val = 11
+		elif i == "C":
+			current_val = 12
+		elif i == "D":
+			current_val = 13
+		elif i == "E":
+			current_val = 14
+		elif i == "F":
+			current_val = 15
+		else:
+			current_val = int(i)
+		total_sum = total_sum + (current_val * (16 ** current_place))
+		current_place = current_place - 1
+	os.system("cls")
+	return total_sum
+
+
 def main():
 	exit = False
 	while not exit:
 		print("Binary <==> Decimal Conversion Tool")
 		print("1. Convert Decimal to Binary")
 		print("2. Convert Binary to Decimal")
-		print("3. Exit")
+		print("3. Convert Decimal to Hexadecimal")
+		print("4. Convert Hexadecimal to Decimal")
+		print("5. Exit")
 		choice = input(">> ")
 		if choice == "1":
 			val = int(input("Number: "))
@@ -44,6 +98,12 @@ def main():
 			val = int(input("Number: "))
 			print(binary_to_denary(val))
 		elif choice == "3":
+			val = int(input("Number: "))
+			print(dec_to_hex(val))
+		elif choice == "4":
+			val = input("Number: ")
+			print(hex_to_dec(val))
+		elif choice == "5":
 			exit = True
 		else:
 			os.system("cls")
